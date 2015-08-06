@@ -169,6 +169,20 @@ Trie.prototype = {
             traverse(node, prefix, res);
         }
         return res;
+    },
+    longestPrefix: function () {
+        var node = this.root;
+        var prefix = '';
+
+        while (node) {
+            if (node.childCount() === 1) {
+                node = node.childAt(0);
+                prefix += node.value;
+            } else {
+                node = null;
+            }
+        }
+        return prefix;
     }
 };
 
@@ -182,7 +196,17 @@ function dump (obj) {
     console.log(JSON.stringify(obj, null, 2));
 }
 
-var words = ['import', 'imports', 'important', 'impulse', 'impulsive', 'impulsiveness', 'impossible'];
+var words = [
+    'image',
+    'import',
+    'imports',
+    'important',
+    'impossible',
+    'impulse',
+    'impulsive',
+    'impulsiveness'
+];
+
 var t = buildTrie(words);
 
 console.log(t.toString());
@@ -203,4 +227,6 @@ dump(options);
 
 console.log(t.findExact('imp'));
 console.log(t.findExact('import'));
+
+console.log(t.longestPrefix());
 
