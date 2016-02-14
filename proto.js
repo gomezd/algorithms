@@ -1,17 +1,16 @@
 
-
-function Cat() {
-    this.name = 'Cat';
+function Cat(name) {
+    this.name = name || 'Cat';
 }
 
 Cat.prototype = {
     saySomething: function () {
-        console.log(this.name + ' says: meow');
+        return this.name + ' says: meow';
     }
 };
 
 var c  = new Cat();
-c.saySomething();
+console.log(c.saySomething());
 
-
-console.log(c.saySomething);
+var g = new Cat('Garfield');
+console.log(g.saySomething());
